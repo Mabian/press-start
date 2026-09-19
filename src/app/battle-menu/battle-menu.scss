@@ -1,0 +1,86 @@
+$pulse: 267ms;
+
+:host {
+  position: relative;
+  display: block;
+  width: calc(152 * var(--px));
+  height: calc(24 * var(--px));
+}
+
+.battle-menu-icons {
+  display: flex;
+
+  .battle-menu-icon {
+    position: relative;
+    display: block;
+    width: calc(24 * var(--px));
+    height: calc(24 * var(--px));
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.battle-menu-cursor {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  // Hidden rather than removed: the animation has to keep running, otherwise the pulse would restart on every switch
+  visibility: hidden;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+  animation: gba-pulse-scale $pulse linear infinite;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  // GBA brightness effect
+  .battle-menu-cursor-flash {
+    filter: brightness(0) invert(1);
+    opacity: 0;
+    animation: gba-pulse-flash $pulse linear infinite;
+  }
+
+  .battle-menu-icon[aria-checked='true'] & {
+    visibility: visible;
+  }
+
+  .battle-menu-icon:focus-visible & {
+    outline: var(--px) solid var(--gba-text);
+    outline-offset: var(--px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    scale: 1.22;
+    animation: none;
+
+    .battle-menu-cursor-flash {
+      display: none;
+    }
+  }
+}
+
+.battle-menu-label {
+  position: absolute;
+  top: var(--px);
+  left: calc(76 * var(--px));
+  width: calc(76 * var(--px));
+  height: calc(23 * var(--px));
+  padding-top: calc(3 * var(--px));
+}
