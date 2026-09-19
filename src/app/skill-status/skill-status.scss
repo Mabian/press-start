@@ -1,0 +1,74 @@
+:host {
+  display: block;
+}
+
+.skill-status-window {
+  position: relative;
+  width: calc(201 * var(--px));
+  height: calc(27 * var(--px));
+
+  @media (max-aspect-ratio: 1 / 1) {
+    width: calc(103 * var(--px));
+  }
+}
+
+.skill-status-column {
+  position: absolute;
+  top: calc(-4 * var(--px));
+  left: calc((3 + var(--column) * 49) * var(--px));
+
+  // Groove to the left of every column but the first
+  &:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: calc(4 * var(--px));
+    left: calc(-5 * var(--px));
+    width: var(--px);
+    height: calc(20 * var(--px));
+    background: var(--gba-fill-shade-1);
+    box-shadow: var(--px) 0 var(--gba-fill-light-1);
+  }
+
+  @media (max-aspect-ratio: 1 / 1) {
+    &:nth-of-type(n + 3) {
+      display: none;
+    }
+  }
+
+  .skill-status-name {
+    display: block;
+    width: fit-content;
+    margin: 0;
+    padding-right: calc(5 * var(--px));
+    // Covers the frame line behind the name
+    background: var(--gba-fill);
+    font: inherit;
+  }
+
+  .skill-status-stats {
+    margin: 0;
+  }
+
+  .skill-status-stat {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    justify-content: space-between;
+    width: calc(35 * var(--px));
+
+    dt,
+    dd {
+      margin: 0;
+    }
+
+    .skill-status-bar {
+      position: absolute;
+      z-index: -1;
+      top: calc(5 * var(--px));
+      left: var(--px);
+      width: calc(var(--bar) * var(--px));
+      height: calc(3 * var(--px));
+      background: linear-gradient(var(--gba-bar-edge) var(--px), var(--gba-bar) var(--px));
+    }
+  }
+}

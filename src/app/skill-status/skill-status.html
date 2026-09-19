@@ -1,0 +1,21 @@
+<div class="gba-window skill-status-window">
+  @for (column of columns(); track column.name; let i = $index) {
+    <section class="skill-status-column" [style.--column]="i" [attr.aria-labelledby]="'skill-' + i">
+      <h2 class="skill-status-name" [id]="'skill-' + i">{{ column.name }}</h2>
+      <dl class="skill-status-stats">
+        @for (stat of column.stats; track stat.label) {
+          <div class="skill-status-stat">
+            <dt>
+              <span aria-hidden="true">{{ stat.label }}</span>
+              <span class="sr-only">{{ stat.description }}</span>
+            </dt>
+            <dd>
+              {{ stat.value }}<span class="sr-only"> of {{ stat.max }}</span>
+              <span class="skill-status-bar" aria-hidden="true" [style.--bar]="stat.bar"></span>
+            </dd>
+          </div>
+        }
+      </dl>
+    </section>
+  }
+</div>
