@@ -1,0 +1,41 @@
+@keyframes gba-pulse-scale {
+  0%,
+  12.5% {
+    scale: 1.15;
+  }
+  37.5%,
+  50% {
+    scale: 1.32;
+  }
+  62.5%,
+  75% {
+    scale: 1.22;
+  }
+  87.5%,
+  100% {
+    scale: 1.15;
+  }
+}
+
+@keyframes gba-pulse-flash {
+  0%,
+  12.5% {
+    opacity: 0;
+  }
+  37.5% {
+    opacity: 0.37;
+  }
+  50% {
+    opacity: 0.42;
+  }
+  62.5%,
+  75% {
+    opacity: 0.48;
+  }
+  87.5% {
+    opacity: 0.15;
+  }
+  100% {
+    opacity: 0;
+  }
+}
