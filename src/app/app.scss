@@ -1,0 +1,29 @@
+:host {
+  display: grid;
+  grid-template-rows: calc(22 * var(--px)) 1fr calc(46 * var(--px));
+  height: 100dvh;
+  overflow: hidden;
+  background: #000000;
+}
+
+.root-letterbox {
+  position: relative;
+  background: #000000;
+
+  .root-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.root-scene {
+  position: relative;
+  background: linear-gradient(#10283a, #1d4a3c 55%, #3d6a26);
+
+  .root-skills {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

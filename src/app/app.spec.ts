@@ -14,10 +14,13 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the skill status and the battle menu', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, portfolio-playground');
+    expect(compiled.querySelector('app-skill-status')?.textContent).toContain('Angular');
+    expect(compiled.querySelector('app-battle-menu .battle-menu-label')?.textContent?.trim()).toBe(
+      'Fight',
+    );
   });
 });
