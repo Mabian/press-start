@@ -1,0 +1,34 @@
+// 8×8 nine-slice frame. Top/left (outside → inside): dark, white, light, black.
+// Bottom/right (inside → outside): dark, white, light.
+$frame: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath fill='%23a8a8a8' d='M0 7h8v1H0zM7 0h1v8H7z'/%3E%3Cpath fill='%23505050' d='M0 0h7v1H0zM0 0h1v7H0z'/%3E%3Cpath fill='%23f8f8f8' d='M1 1h6v1H1zM1 6h6v1H1zM1 1h1v6H1zM6 1h1v6H6z'/%3E%3Cpath fill='%23505050' d='M2 5h4v1H2zM5 2h1v4H5z'/%3E%3Cpath fill='%23a8a8a8' d='M2 2h3v1H2zM2 2h1v3H2z'/%3E%3Cpath fill='%23000' d='M3 3h2v1H3zM3 3h1v2H3z'/%3E%3C/svg%3E";
+
+.gba-window {
+  --px-1: var(--px);
+  --px-2: calc(2 * var(--px));
+  --px-3: calc(3 * var(--px));
+
+  display: block;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: calc(4 * var(--px)) var(--px-3) var(--px-3) calc(4 * var(--px));
+  border-image: url($frame) 4 3 3 4 stretch;
+  background: var(--gba-fill) padding-box;
+  // Fill gets darker towards top/left and lighter towards bottom/right
+  box-shadow:
+    inset var(--px-1) var(--px-1) var(--gba-fill-shade-1),
+    inset calc(-1 * var(--px-1)) calc(-1 * var(--px-1)) var(--gba-fill-light-1),
+    inset var(--px-2) var(--px-2) var(--gba-fill-shade-2),
+    inset calc(-1 * var(--px-2)) calc(-1 * var(--px-2)) var(--gba-fill-light-2),
+    inset var(--px-3) var(--px-3) var(--gba-fill-shade-3),
+    inset calc(-1 * var(--px-3)) calc(-1 * var(--px-3)) var(--gba-fill-light-3);
+  color: var(--gba-text);
+  // Pixelify Sans draws 11 pixels per em, so 1 font pixel = 1 GBA pixel
+  font-family: var(--font-gba);
+  font-size: calc(11 * var(--px));
+  line-height: calc(8 * var(--px));
+  text-shadow:
+    var(--px) 0 var(--gba-text-shadow),
+    0 var(--px) var(--gba-text-shadow),
+    var(--px) var(--px) var(--gba-text-shadow);
+  white-space: nowrap;
+}
