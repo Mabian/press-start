@@ -1,0 +1,16 @@
+// Pixelify Sans draws 11 pixels per em, so 1 font pixel = 1 GBA pixel
+@mixin gba-text {
+  font-family: var(--font-gba);
+  font-size: calc(11 * var(--px));
+  line-height: calc(8 * var(--px));
+  text-shadow:
+    var(--px) 0 var(--gba-text-shadow),
+    0 var(--px) var(--gba-text-shadow),
+    var(--px) var(--px) var(--gba-text-shadow);
+}
+
+.gba-text {
+  @include gba-text;
+
+  color: var(--gba-text);
+}
