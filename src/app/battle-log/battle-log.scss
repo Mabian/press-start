@@ -1,0 +1,13 @@
+:host {
+  position: absolute;
+  top: calc(3 * var(--px));
+  left: calc(2 * var(--px));
+  display: block;
+  cursor: pointer;
+}
+
+.battle-log-lines {
+  display: grid;
+  row-gap: calc(4 * var(--px));
+  justify-items: start;
+}

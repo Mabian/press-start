@@ -1,11 +1,32 @@
-<div class="root-letterbox root-letterbox-top"></div>
+<div class="root-screen">
+  <div class="root-letterbox root-letterbox-top"></div>
 
-<main class="root-scene">
-  <h1 class="sr-only">Portfolio</h1>
-  <app-skill-status class="root-skills" [skills]="skills" />
-  <router-outlet />
-</main>
+  <main class="root-scene">
+    <h1 class="sr-only">Portfolio</h1>
+    <app-skill-status class="root-skills" [skills]="skills" />
+    <app-enemy-field
+      class="root-enemies"
+      [projects]="projects"
+      [active]="flow.mode() === 'targeting'"
+      [selectedIndex]="flow.targetIndex()"
+      (selectedIndexChange)="flow.selectTarget($event)"
+      (chosen)="attack($event)"
+      (cancelled)="flow.backToMenu()"
+    />
+    <router-outlet />
+  </main>
 
-<nav class="root-letterbox root-letterbox-bottom" aria-label="Main menu">
-  <app-battle-menu class="root-menu" [items]="menuItems" [(selectedIndex)]="selectedIndex" />
-</nav>
+  <nav class="root-letterbox root-letterbox-bottom" aria-label="Main menu">
+    @if (flow.mode() === 'log') {
+      <app-battle-log class="root-log" [lines]="flow.logLines()" (finished)="openTarget()" />
+    } @else {
+      <app-battle-menu
+        class="root-menu"
+        [items]="menuItems"
+        [active]="flow.mode() === 'menu'"
+        [(selectedIndex)]="selectedIndex"
+        (confirmed)="confirmMenu()"
+      />
+    }
+  </nav>
+</div>
