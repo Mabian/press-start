@@ -29,6 +29,9 @@ export class App {
       case 'fight':
         this.flow.startTargeting();
         break;
+      case 'status':
+        void this.router.navigate(['/status']);
+        break;
     }
   }
 

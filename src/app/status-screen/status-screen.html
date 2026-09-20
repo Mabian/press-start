@@ -1,0 +1,80 @@
+<section class="gba-window status-screen-window" [attr.lang]="language()">
+  <header class="status-screen-header">
+    <div
+      class="status-screen-tabs"
+      role="tablist"
+      aria-label="Legal topics"
+      appArrowSelection
+      [count]="tabs().length"
+      [active]="false"
+      [(selectedIndex)]="tabIndex"
+    >
+      @for (tab of tabs(); track $index; let i = $index) {
+        <button
+          type="button"
+          role="tab"
+          data-arrow-option
+          class="status-screen-tab"
+          [id]="'status-screen-tab-' + i"
+          [attr.aria-selected]="tabIndex() === i"
+          [attr.aria-controls]="'status-screen-panel'"
+          [tabIndex]="tabIndex() === i ? 0 : -1"
+          (click)="tabIndex.set(i)"
+        >
+          {{ tab }}
+        </button>
+      }
+    </div>
+
+    <div class="status-screen-languages" role="group" aria-label="Language">
+      @for (option of languages; track option.code) {
+        <button
+          type="button"
+          class="status-screen-language"
+          [attr.aria-pressed]="language() === option.code"
+          (click)="language.set(option.code)"
+        >
+          {{ option.label }}
+        </button>
+      }
+    </div>
+  </header>
+
+  <div
+    #panel
+    id="status-screen-panel"
+    class="status-screen-panel"
+    role="tabpanel"
+    tabindex="0"
+    [attr.aria-labelledby]="'status-screen-tab-' + tabIndex()"
+  >
+    @if (tabIndex() === 0) {
+      <address class="status-screen-address">
+        @for (line of imprint.address; track line) {
+          <span>{{ line }}</span>
+        }
+      </address>
+
+      <p class="status-screen-contact">
+        <a [href]="'mailto:' + imprint.email">{{ imprint.email }}</a>
+        <a [href]="imprint.secondContactUrl" target="_blank" rel="noopener">
+          {{ text().secondContact }}
+        </a>
+      </p>
+
+      <p class="status-screen-note">{{ text().note }}</p>
+    } @else {
+      @for (section of privacy().sections; track section.heading) {
+        <section class="status-screen-section">
+          <h2 class="status-screen-section-heading">{{ section.heading }}</h2>
+          @for (paragraph of section.paragraphs; track paragraph) {
+            <p class="status-screen-paragraph">{{ paragraph }}</p>
+          }
+        </section>
+      }
+    }
+  </div>
+
+  <p class="status-screen-help">{{ text().help }}</p>
+  <button type="button" class="status-screen-back" (click)="close()">Back</button>
+</section>
