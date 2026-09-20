@@ -5,12 +5,13 @@ import { BattleFlow } from './battle-flow';
 import { BattleLog } from './battle-log/battle-log';
 import { BattleMenu } from './battle-menu/battle-menu';
 import { EnemyField } from './enemy-field/enemy-field';
+import { PowerOff } from './power-off/power-off';
 import { PROJECTS, Project } from './projects';
 import { SkillStatus } from './skill-status/skill-status';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BattleLog, BattleMenu, EnemyField, SkillStatus],
+  imports: [RouterOutlet, BattleLog, BattleMenu, EnemyField, PowerOff, SkillStatus],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,6 +32,9 @@ export class App {
         break;
       case 'status':
         void this.router.navigate(['/status']);
+        break;
+      case 'escape':
+        this.flow.powerOff();
         break;
     }
   }

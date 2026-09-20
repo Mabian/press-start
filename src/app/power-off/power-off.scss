@@ -1,0 +1,35 @@
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  display: block;
+}
+
+.power-off-display {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: #070c07;
+  animation: gba-power-fade 1400ms ease-out both;
+
+  .power-off-button {
+    padding: calc(2 * var(--px)) calc(4 * var(--px));
+    border: 0;
+    background: none;
+    color: #2d4a2d;
+    cursor: pointer;
+    text-shadow: none;
+
+    &:hover,
+    &:focus-visible {
+      color: #7aa86a;
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: var(--px) solid #7aa86a;
+      outline-offset: var(--px);
+    }
+  }
+}
