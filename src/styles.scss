@@ -28,6 +28,8 @@
 
   --gba-bar: #0000f8;
   --gba-bar-edge: #0020a8;
+  --gba-bar-missing: #f80000;
+  --gba-bar-missing-edge: #a80000;
 }
 
 @supports (width: round(down, 10px, 1px)) {
