@@ -1,0 +1,66 @@
+:host {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: block;
+}
+
+.project-detail-window {
+  width: calc(150 * var(--px));
+
+  &:focus-visible {
+    outline: none;
+  }
+  padding: calc(2 * var(--px)) calc(3 * var(--px));
+  white-space: normal;
+
+  .project-detail-name,
+  .project-detail-tagline,
+  .project-detail-description,
+  .project-detail-tech,
+  .project-detail-actions {
+    margin: 0 0 calc(4 * var(--px));
+  }
+
+  .project-detail-tagline,
+  .project-detail-description,
+  .project-detail-tech {
+    // Prose is set looser than the 8 px grid, like the help text in the game
+    line-height: calc(12 * var(--px));
+  }
+
+  .project-detail-name {
+    background: var(--gba-fill-light-2);
+  }
+
+  .project-detail-actions {
+    display: flex;
+    gap: calc(6 * var(--px));
+    margin-bottom: 0;
+  }
+
+  .project-detail-action {
+    padding: 0 calc(2 * var(--px));
+    border: 0;
+    background: var(--gba-fill-shade-1);
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+    text-shadow: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--gba-fill-light-1);
+    }
+
+    &.project-detail-action-selected {
+      background: var(--gba-fill-light-2);
+    }
+
+    &:focus-visible {
+      outline: var(--px) solid var(--gba-text);
+      outline-offset: var(--px);
+    }
+  }
+}

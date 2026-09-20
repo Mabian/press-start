@@ -1,0 +1,51 @@
+@let entry = project();
+
+<section
+  #window
+  class="gba-window project-detail-window"
+  tabindex="-1"
+  aria-labelledby="project-detail-name"
+  appArrowSelection
+  [count]="entry ? 2 : 1"
+  [(selectedIndex)]="actionIndex"
+  (confirmed)="activate($event)"
+  (cancelled)="close()"
+>
+  <h2 id="project-detail-name" class="project-detail-name">
+    {{ entry ? entry.name : 'Unknown project' }}
+  </h2>
+
+  @if (entry) {
+    <p class="project-detail-tagline">{{ entry.tagline }}</p>
+    <p class="project-detail-description">{{ entry.description }}</p>
+    <p class="project-detail-tech">{{ entry.tech.join(' · ') }}</p>
+  }
+
+  <div class="project-detail-actions" role="toolbar" aria-label="Project actions">
+    @if (entry) {
+      <a
+        #action
+        data-arrow-option
+        class="project-detail-action"
+        [class.project-detail-action-selected]="actionIndex() === 0"
+        [tabIndex]="actionIndex() === 0 ? 0 : -1"
+        [href]="entry.url"
+        target="_blank"
+        rel="noopener"
+      >
+        Visit
+      </a>
+    }
+    <button
+      #action
+      data-arrow-option
+      type="button"
+      class="project-detail-action"
+      [class.project-detail-action-selected]="actionIndex() === (entry ? 1 : 0)"
+      [tabIndex]="actionIndex() === (entry ? 1 : 0) ? 0 : -1"
+      (click)="close()"
+    >
+      Back
+    </button>
+  </div>
+</section>

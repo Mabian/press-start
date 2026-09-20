@@ -1,9 +1,13 @@
 :host {
+  display: block;
+  background: #000000;
+}
+
+.root-screen {
   display: grid;
   grid-template-rows: calc(22 * var(--px)) 1fr calc(46 * var(--px));
   height: 100dvh;
   overflow: hidden;
-  background: #000000;
 }
 
 .root-letterbox {

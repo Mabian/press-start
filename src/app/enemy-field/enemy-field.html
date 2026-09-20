@@ -1,0 +1,28 @@
+<div
+  class="enemy-field-row"
+  role="radiogroup"
+  aria-label="Projects"
+  appArrowSelection
+  [count]="projects().length"
+  [active]="active()"
+  [(selectedIndex)]="selectedIndex"
+  (confirmed)="choose($event)"
+  (cancelled)="cancelled.emit()"
+>
+  @for (project of projects(); track project.id; let i = $index) {
+    <button
+      type="button"
+      role="radio"
+      data-arrow-option
+      class="enemy-field-enemy"
+      [class.enemy-field-enemy-targeted]="active() && i === selectedIndex()"
+      [attr.aria-checked]="i === selectedIndex()"
+      [attr.aria-label]="project.name"
+      [tabIndex]="i === selectedIndex() ? 0 : -1"
+      (click)="choose(i)"
+    >
+      <img [ngSrc]="project.sprite" width="16" height="16" alt="" priority />
+      <span class="gba-text enemy-field-name" aria-hidden="true">{{ project.name }}</span>
+    </button>
+  }
+</div>
