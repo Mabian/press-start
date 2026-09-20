@@ -1,19 +1,25 @@
-<div class="battle-menu-icons" role="radiogroup" aria-label="Battle menu">
+<div
+  class="battle-menu-icons"
+  role="radiogroup"
+  aria-label="Battle menu"
+  appArrowSelection
+  [count]="items().length"
+  [active]="active()"
+  [(selectedIndex)]="selectedIndex"
+  (confirmed)="confirm($event)"
+>
   @for (item of items(); track item.id; let i = $index) {
     <button
-      #option
       type="button"
       role="radio"
+      data-arrow-option
       class="battle-menu-icon"
       [attr.aria-checked]="i === selectedIndex()"
       [attr.aria-label]="item.label"
       [tabIndex]="i === selectedIndex() ? 0 : -1"
-      (click)="select(i)"
+      (click)="confirm(i)"
     >
       <img [ngSrc]="item.icon" width="24" height="24" alt="" priority />
-
-      <!-- Highlight of the selected item. Every item keeps its own, hidden but running,
-           so the pulse carries on across a switch like it does in the game. -->
       <span class="battle-menu-cursor" aria-hidden="true">
         <img
           class="battle-menu-cursor-icon"
@@ -36,5 +42,4 @@
   }
 </div>
 
-<!-- Radios already announce the label, so the text box is visual only -->
 <div class="gba-window battle-menu-label" aria-hidden="true">{{ selectedItem().label }}</div>
