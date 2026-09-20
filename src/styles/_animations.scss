@@ -39,3 +39,37 @@
     opacity: 0;
   }
 }
+
+@keyframes gba-power-off {
+  0% {
+    transform: scale(1, 1);
+    filter: brightness(1);
+  }
+  30% {
+    transform: scale(1, 0.03);
+    filter: brightness(3);
+  }
+  60% {
+    transform: scale(0.35, 0.03);
+    filter: brightness(6);
+  }
+  85% {
+    transform: scale(0.03, 0.03);
+    filter: brightness(9);
+  }
+  100% {
+    transform: scale(0, 0);
+    filter: brightness(10);
+    opacity: 0;
+  }
+}
+
+@keyframes gba-power-fade {
+  0%,
+  35% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

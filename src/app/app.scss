@@ -8,6 +8,11 @@
   grid-template-rows: calc(22 * var(--px)) 1fr calc(46 * var(--px));
   height: 100dvh;
   overflow: hidden;
+  transform-origin: 50% 50%;
+
+  &.root-screen-off {
+    animation: gba-power-off 450ms ease-in forwards;
+  }
 }
 
 .root-letterbox {
@@ -29,5 +34,12 @@
     position: absolute;
     top: 0;
     right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root-screen.root-screen-off {
+    animation: none;
+    opacity: 0;
   }
 }
