@@ -40,7 +40,6 @@
     width: fit-content;
     margin: 0;
     padding-right: calc(5 * var(--px));
-    // Covers the frame line behind the name
     background: var(--gba-fill);
     font: inherit;
   }
@@ -62,13 +61,22 @@
     }
 
     .skill-status-bar {
+      --reached: calc(var(--bar) * var(--px));
+
       position: absolute;
       z-index: -1;
       top: calc(5 * var(--px));
       left: var(--px);
-      width: calc(var(--bar) * var(--px));
+      width: calc(40 * var(--px));
       height: calc(3 * var(--px));
-      background: linear-gradient(var(--gba-bar-edge) var(--px), var(--gba-bar) var(--px));
+      background:
+        linear-gradient(
+            to right,
+            var(--gba-bar-edge) 0 var(--reached),
+            var(--gba-bar-missing-edge) 0
+          )
+          top / 100% var(--px) no-repeat,
+        linear-gradient(to right, var(--gba-bar) 0 var(--reached), var(--gba-bar-missing) 0);
     }
   }
 }
