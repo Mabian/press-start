@@ -10,6 +10,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { prefersReducedMotion } from '../reduced-motion';
 
 const LINE_DELAY = 700;
 const FINISH_DELAY = 900;
@@ -39,7 +40,7 @@ export class BattleLog implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.prefersReducedMotion()) {
+    if (prefersReducedMotion(this.document)) {
       this.shown.set(this.lines().length);
       this.after(FINISH_DELAY, () => this.finished.emit());
       return;
@@ -76,13 +77,5 @@ export class BattleLog implements OnInit {
   private clearTimers(): void {
     this.timers.forEach(clearTimeout);
     this.timers.length = 0;
-  }
-
-  private prefersReducedMotion(): boolean {
-    const view = this.document.defaultView;
-    if (typeof view?.matchMedia !== 'function') {
-      return false;
-    }
-    return view.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 }
