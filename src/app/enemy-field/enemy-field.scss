@@ -30,6 +30,19 @@ $pulse: 267ms;
     cursor: pointer;
     transform-origin: 50% 100%;
 
+    // Staggered so the row reads as a formation in depth, not as a line
+    &:nth-child(1) {
+      translate: 0 calc(-6 * var(--px));
+    }
+
+    &:nth-child(2) {
+      translate: 0 calc(3 * var(--px));
+    }
+
+    &:nth-child(3) {
+      translate: 0 calc(-3 * var(--px));
+    }
+
     img {
       display: block;
       width: 100%;
