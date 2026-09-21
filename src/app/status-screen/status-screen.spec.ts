@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { BattleFlow } from '../battle-flow';
 import { IMPRINT, PRIVACY } from '../legal-content';
@@ -75,6 +75,33 @@ describe('StatusScreen', () => {
       PRIVACY.de.title,
     );
     expect(host.textContent).toContain(PRIVACY.de.sections[0].paragraphs[0]);
+  });
+
+  const press = async (fixture: ComponentFixture<StatusScreen>, key: string) => {
+    document.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }));
+    await fixture.whenStable();
+  };
+
+  it('switches tabs with the left and right arrows', async () => {
+    const { fixture, host } = await render();
+    await press(fixture, 'ArrowRight');
+    expect(host.querySelector('[role="tab"][aria-selected="true"]')?.textContent?.trim()).toBe(
+      PRIVACY.en.title,
+    );
+    await press(fixture, 'ArrowLeft');
+    expect(host.querySelector('[role="tab"][aria-selected="true"]')?.textContent?.trim()).toBe(
+      IMPRINT.text.en.title,
+    );
+  });
+
+  it('steps from the panel to the back button and back up', async () => {
+    const { fixture, host } = await render();
+    const panel = host.querySelector('.status-screen-panel');
+    const back = host.querySelector('.status-screen-back');
+    await press(fixture, 'ArrowDown');
+    expect(document.activeElement).toBe(back);
+    await press(fixture, 'ArrowUp');
+    expect(document.activeElement).toBe(panel);
   });
 
   it('keeps the menu quiet while it is open', async () => {

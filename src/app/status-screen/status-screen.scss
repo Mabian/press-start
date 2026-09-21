@@ -16,6 +16,7 @@
 
   .status-screen-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: start;
     justify-content: space-between;
     gap: calc(8 * var(--px));
@@ -23,6 +24,7 @@
 
     .status-screen-tabs {
       display: flex;
+      flex-wrap: wrap;
       gap: calc(4 * var(--px));
 
       .status-screen-tab {
@@ -79,7 +81,9 @@
   }
 
   .status-screen-panel {
+    min-height: 0;
     overflow-y: auto;
+    overflow-wrap: break-word;
     overscroll-behavior: contain;
 
     &:focus-visible {
@@ -118,6 +122,7 @@
 
   .status-screen-contact {
     display: flex;
+    flex-wrap: wrap;
     gap: calc(8 * var(--px));
     margin: calc(8 * var(--px)) 0 0;
 
