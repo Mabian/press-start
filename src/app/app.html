@@ -1,4 +1,8 @@
-<div class="root-screen" [class.root-screen-off]="flow.mode() === 'off'" [attr.inert]="flow.mode() === 'off' ? '' : null">
+<div
+  class="root-screen"
+  [class.root-screen-off]="flow.mode() === 'off'"
+  [attr.inert]="flow.screenCovered() ? '' : null"
+>
   <div class="root-letterbox root-letterbox-top"></div>
 
   <main class="root-scene">
@@ -31,6 +35,14 @@
   </nav>
 </div>
 
+@if (flow.mode() === 'boot') {
+  <app-boot
+    [heading]="bootText.heading"
+    [subtitle]="bootText.subtitle"
+    (finished)="flow.backToMenu()"
+  />
+}
+
 @if (flow.mode() === 'off') {
-  <app-power-off (poweredOn)="flow.backToMenu()" />
+  <app-power-off (poweredOn)="flow.powerOn()" />
 }

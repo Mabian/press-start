@@ -24,3 +24,8 @@ export const SKILLS: readonly Skill[] = [
   { name: 'Java', level: 26, maxLevel: 30, experience: 10, maxExperience: 16 },
   { name: 'DevOps', level: 24, maxLevel: 30, experience: 5, maxExperience: 16 },
 ];
+
+export const BOOT_SCREEN_TEXT = {
+  heading: 'PRESS START',
+  subtitle: 'Portfolio®',
+} as const;
