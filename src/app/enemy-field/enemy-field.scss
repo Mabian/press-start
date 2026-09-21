@@ -13,6 +13,12 @@ $pulse: 267ms;
   justify-content: center;
   gap: calc(14 * var(--px));
 
+  // Only once the viewport has room to spare, below that the name label of the
+  // outer enemy would be cut off at the screen edge
+  @media (min-aspect-ratio: 184 / 204) {
+    gap: calc(28 * var(--px));
+  }
+
   .enemy-field-enemy {
     position: relative;
     display: block;
