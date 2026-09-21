@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { BATTLE_MENU_ITEMS, SKILLS } from './battle-data';
+import { BATTLE_MENU_ITEMS, BOOT_SCREEN_TEXT, SKILLS } from './battle-data';
 import { BattleFlow } from './battle-flow';
 import { BattleLog } from './battle-log/battle-log';
 import { BattleMenu } from './battle-menu/battle-menu';
+import { Boot } from './boot/boot';
 import { EnemyField } from './enemy-field/enemy-field';
 import { PowerOff } from './power-off/power-off';
 import { PROJECTS, Project } from './projects';
@@ -11,12 +12,13 @@ import { SkillStatus } from './skill-status/skill-status';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BattleLog, BattleMenu, EnemyField, PowerOff, SkillStatus],
+  imports: [RouterOutlet, BattleLog, BattleMenu, Boot, EnemyField, PowerOff, SkillStatus],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
+  protected readonly bootText = BOOT_SCREEN_TEXT;
   protected readonly menuItems = BATTLE_MENU_ITEMS;
   protected readonly skills = SKILLS;
   protected readonly projects = PROJECTS;

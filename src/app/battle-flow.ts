@@ -1,11 +1,11 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { PROJECTS, Project } from './projects';
 
-export type BattleMode = 'menu' | 'targeting' | 'log' | 'window' | 'off';
+export type BattleMode = 'boot' | 'menu' | 'targeting' | 'log' | 'window' | 'off';
 
 @Injectable({ providedIn: 'root' })
 export class BattleFlow {
-  private readonly modeState = signal<BattleMode>('menu');
+  private readonly modeState = signal<BattleMode>('boot');
   private readonly targetIndexState = signal(0);
   private readonly logLinesState = signal<readonly string[]>([]);
 
@@ -13,6 +13,7 @@ export class BattleFlow {
   readonly targetIndex = this.targetIndexState.asReadonly();
   readonly logLines = this.logLinesState.asReadonly();
   readonly target = computed(() => PROJECTS[this.targetIndexState()]);
+  readonly screenCovered = computed(() => this.mode() === 'boot' || this.mode() === 'off');
 
   startTargeting(): void {
     this.targetIndexState.set(0);
@@ -34,6 +35,10 @@ export class BattleFlow {
 
   powerOff(): void {
     this.modeState.set('off');
+  }
+
+  powerOn(): void {
+    this.modeState.set('boot');
   }
 
   backToMenu(): void {

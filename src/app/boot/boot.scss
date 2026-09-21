@@ -1,0 +1,112 @@
+$boot-blue: #000cff;
+$boot-magenta: #c400c4;
+
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  display: block;
+  overflow: hidden;
+  background: #f6f6f6;
+
+  &.boot-leaving {
+    animation: gba-boot-fade-out 250ms ease-in 150ms forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 0;
+    }
+  }
+}
+
+.boot-display {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  // The wordmark spans 58% of the width like the original, the pixel grid does not apply
+  // to an outline font
+  font-size: min(11vw, 26dvh);
+  row-gap: 0.52em;
+  height: 100%;
+  font-family: var(--font-boot);
+
+  :host(.boot-leaving) & {
+    animation: gba-boot-fade-out 200ms ease-out forwards;
+  }
+
+  .boot-heading {
+    margin: 0;
+    font-size: 1em;
+    // Fugaz One ships one weight, the h1 default would synthesise a bold
+    font-weight: normal;
+  }
+
+  .boot-start {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 1em;
+    line-height: 1;
+    color: $boot-blue;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 0.04em solid $boot-blue;
+      outline-offset: 0.08em;
+    }
+  }
+
+  .boot-heading-letters {
+    display: block;
+    // Fugaz One runs a third wider than the original logotype at the same cap height
+    scale: 0.78 1;
+    white-space: pre;
+
+    :host(.boot-ready) & {
+      animation: gba-boot-blink 1068ms steps(1) infinite;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+    }
+  }
+
+  .boot-letter {
+    --boot-letter-spread: calc(
+      (var(--boot-letter-index) - (var(--boot-letter-count) - 1) / 2) * 0.2em
+    );
+
+    display: inline-block;
+    color: $boot-blue;
+    // The sweep gets forwards only, a backwards fill would hold it magenta from frame one
+    animation:
+      gba-boot-letter 700ms linear calc(470ms + var(--boot-letter-index) * 80ms) both,
+      gba-boot-hue 600ms linear calc(620ms + var(--boot-letter-index) * 80ms) both,
+      gba-boot-sweep 1400ms ease-in-out calc(1850ms + var(--boot-letter-index) * 50ms) forwards;
+
+    :host(.boot-ready) & {
+      animation: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  .boot-subtitle {
+    margin: 0;
+    font-size: 0.5em;
+    line-height: 1;
+    color: $boot-magenta;
+    animation: gba-boot-subtitle-in 270ms ease-out 130ms both;
+
+    :host(.boot-ready) & {
+      animation: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+}

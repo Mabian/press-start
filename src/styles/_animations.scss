@@ -73,3 +73,90 @@
     opacity: 1;
   }
 }
+
+@keyframes gba-boot-subtitle-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes gba-boot-letter {
+  0% {
+    opacity: 0;
+    translate: var(--boot-letter-spread) 1.7em;
+    scale: 4.2;
+  }
+  10% {
+    opacity: 0.45;
+    translate: calc(var(--boot-letter-spread) * 0.9) 0.25em;
+    scale: 3.3;
+  }
+  55% {
+    opacity: 0.85;
+    translate: calc(var(--boot-letter-spread) * 0.45) -0.12em;
+    scale: 1.6;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes gba-boot-hue {
+  0% {
+    color: hsl(300 100% 50%);
+  }
+  14% {
+    color: hsl(342 100% 50%);
+  }
+  28% {
+    color: hsl(24 100% 50%);
+  }
+  42% {
+    color: hsl(66 100% 50%);
+  }
+  56% {
+    color: hsl(108 100% 50%);
+  }
+  70% {
+    color: hsl(150 100% 50%);
+  }
+  84% {
+    color: hsl(192 100% 50%);
+  }
+  100% {
+    color: hsl(237 100% 50%);
+  }
+}
+
+@keyframes gba-boot-sweep {
+  0%,
+  100% {
+    color: hsl(237 100% 50%);
+  }
+  50% {
+    color: hsl(300 100% 50%);
+  }
+}
+
+@keyframes gba-boot-blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes gba-boot-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

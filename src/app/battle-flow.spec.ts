@@ -41,7 +41,16 @@ describe('BattleFlow', () => {
   it('knows the window and off modes', () => {
     flow.openWindow();
     expect(flow.mode()).toBe('window');
+    expect(flow.screenCovered()).toBe(false);
     flow.powerOff();
     expect(flow.mode()).toBe('off');
+    expect(flow.screenCovered()).toBe(true);
+  });
+
+  it('boots again after a power on', () => {
+    flow.powerOff();
+    flow.powerOn();
+    expect(flow.mode()).toBe('boot');
+    expect(flow.screenCovered()).toBe(true);
   });
 });
