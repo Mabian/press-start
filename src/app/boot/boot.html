@@ -1,0 +1,18 @@
+<section class="boot-display" aria-labelledby="boot-heading">
+  <h1 id="boot-heading" class="boot-heading">
+    <button type="button" class="boot-start" (click)="start()">
+      <span class="sr-only">{{ heading() }}</span>
+      <span
+        class="boot-heading-letters"
+        aria-hidden="true"
+        [style.--boot-letter-count]="letters().length"
+      >
+        @for (letter of letters(); track $index) {
+          <span class="boot-letter" [style.--boot-letter-index]="$index">{{ letter }}</span>
+        }
+      </span>
+    </button>
+  </h1>
+
+  <p class="boot-subtitle">{{ subtitle() }}</p>
+</section>

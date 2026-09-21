@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { BattleFlow } from './battle-flow';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
     }).compileComponents();
+    // Root singleton, starts in the boot sequence
+    TestBed.inject(BattleFlow).backToMenu();
   });
 
   it('should create the app', () => {
