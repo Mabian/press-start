@@ -21,7 +21,7 @@
       [tabIndex]="i === selectedIndex() ? 0 : -1"
       (click)="choose(i)"
     >
-      <img [ngSrc]="project.sprite" width="16" height="16" alt="" priority />
+      <img [ngSrc]="project.sprite" width="32" height="32" alt="" priority />
       <span class="gba-text enemy-field-name" aria-hidden="true">{{ project.name }}</span>
     </button>
   }
