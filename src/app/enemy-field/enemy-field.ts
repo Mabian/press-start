@@ -13,6 +13,7 @@ import { Project } from '../projects';
 export class EnemyField {
   readonly projects = input.required<readonly Project[]>();
   readonly active = input(false);
+  readonly hit = input(false);
   readonly selectedIndex = model(0);
   readonly chosen = output<Project>();
   readonly cancelled = output<void>();

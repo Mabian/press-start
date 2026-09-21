@@ -16,12 +16,16 @@
       data-arrow-option
       class="enemy-field-enemy"
       [class.enemy-field-enemy-targeted]="active() && i === selectedIndex()"
+      [class.enemy-field-enemy-hit]="hit() && i === selectedIndex()"
       [attr.aria-checked]="i === selectedIndex()"
       [attr.aria-label]="project.name"
       [tabIndex]="i === selectedIndex() ? 0 : -1"
       (click)="choose(i)"
     >
       <img [ngSrc]="project.sprite" width="32" height="32" alt="" priority />
+      <svg class="enemy-field-cut" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M 56 8 Q 39.4 39.4 8 56 Q 36.0 36.0 56 8 Z" />
+      </svg>
       <span class="gba-text enemy-field-name" aria-hidden="true">{{ project.name }}</span>
     </button>
   }

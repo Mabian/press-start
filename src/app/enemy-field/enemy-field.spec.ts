@@ -47,6 +47,15 @@ describe('EnemyField', () => {
     expect(targeted[0].getAttribute('aria-label')).toBe(PROJECTS[1].name);
   });
 
+  it('marks the hit enemy while the log runs', async () => {
+    fixture.componentRef.setInput('active', false);
+    fixture.componentRef.setInput('hit', true);
+    await fixture.whenStable();
+    const hit = host.querySelectorAll('.enemy-field-enemy-hit');
+    expect(hit.length).toBe(1);
+    expect(hit[0].getAttribute('aria-label')).toBe(PROJECTS[0].name);
+  });
+
   it('chooses the target on enter and on click', async () => {
     await press('Enter');
     expect(chosen).toEqual([PROJECTS[0]]);
