@@ -160,3 +160,49 @@
     opacity: 0;
   }
 }
+
+@keyframes gba-hit-slash {
+  0% {
+    opacity: 1;
+    scale: 0;
+  }
+  22% {
+    opacity: 1;
+    scale: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 1;
+  }
+}
+
+@keyframes gba-hit-flash {
+  0%,
+  20% {
+    filter: none;
+    translate: 0 0;
+  }
+  22%,
+  40% {
+    filter: brightness(0) invert(1);
+    translate: calc(-1 * var(--px)) 0;
+  }
+  42%,
+  58% {
+    filter: none;
+    translate: var(--px) 0;
+  }
+  60%,
+  74% {
+    filter: brightness(0) invert(1);
+    translate: 0 0;
+  }
+  76%,
+  100% {
+    filter: none;
+    translate: 0 0;
+  }
+}

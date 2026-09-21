@@ -58,6 +58,33 @@ $pulse: 267ms;
       white-space: nowrap;
     }
 
+    .enemy-field-cut {
+      position: absolute;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      overflow: visible;
+      pointer-events: none;
+
+      path {
+        transform-box: fill-box;
+        transform-origin: 100% 0;
+        scale: 0;
+        opacity: 0;
+        fill: var(--gba-text);
+      }
+    }
+
+    &.enemy-field-enemy-hit {
+      .enemy-field-cut path {
+        animation: gba-hit-slash 520ms ease-out;
+      }
+
+      img {
+        animation: gba-hit-flash 520ms steps(1, end);
+      }
+    }
+
     &:focus-visible {
       outline: var(--px) solid var(--gba-text);
       outline-offset: var(--px);
@@ -74,6 +101,13 @@ $pulse: 267ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .enemy-field-row .enemy-field-enemy.enemy-field-enemy-hit {
+    .enemy-field-cut path,
+    img {
+      animation: none;
+    }
+  }
+
   .enemy-field-row .enemy-field-enemy.enemy-field-enemy-targeted {
     scale: 1.22;
     animation: none;

@@ -12,6 +12,7 @@
       class="root-enemies"
       [projects]="projects"
       [active]="flow.mode() === 'targeting'"
+      [hit]="flow.mode() === 'log'"
       [selectedIndex]="flow.targetIndex()"
       (selectedIndexChange)="flow.selectTarget($event)"
       (chosen)="attack($event)"
