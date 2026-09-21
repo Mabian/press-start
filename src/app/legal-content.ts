@@ -42,7 +42,7 @@ export const PRIVACY: Readonly<
   Record<Language, { readonly title: string; readonly sections: readonly LegalSection[] }>
 > = {
   de: {
-    title: 'Datenschutzerklärung',
+    title: 'Datenschutz',
     sections: [
       {
         heading: 'Verantwortlicher',
