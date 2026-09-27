@@ -43,4 +43,15 @@ export const PROJECTS: readonly Project[] = [
     sprite: 'enemies/handheld.svg',
     damage: 10,
   },
+  {
+    id: 'shelf-esteem',
+    name: 'Shelf Esteem',
+    tagline: 'Goodreads bookshelf',
+    description:
+      'Puts every book from your Goodreads "read" shelf on a drawn bookcase, grouped by year. Each spine takes its color from the cover.',
+    tech: ['Angular', 'Cloudflare Workers', 'GitHub Pages'],
+    url: 'https://mabian.github.io/shelf-esteem/',
+    sprite: 'enemies/book.svg',
+    damage: 16,
+  },
 ];

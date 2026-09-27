@@ -11,11 +11,11 @@ $pulse: 267ms;
 .enemy-field-row {
   display: flex;
   justify-content: center;
-  gap: calc(14 * var(--px));
+  gap: calc(8 * var(--px));
 
-  // Only once the viewport has room to spare, below that the name label of the
-  // outer enemy would be cut off at the screen edge
-  @media (min-aspect-ratio: 184 / 204) {
+  // Only once the viewport has room to spare, below that the pulsing outer
+  // enemies would reach past the screen edge
+  @media (min-aspect-ratio: 224 / 204) {
     gap: calc(28 * var(--px));
   }
 
@@ -43,6 +43,10 @@ $pulse: 267ms;
       translate: 0 calc(-3 * var(--px));
     }
 
+    &:nth-child(4) {
+      translate: 0 calc(4 * var(--px));
+    }
+
     img {
       display: block;
       width: 100%;
@@ -56,6 +60,17 @@ $pulse: 267ms;
       translate: -50% 0;
       visibility: hidden;
       white-space: nowrap;
+    }
+
+    &:first-child .enemy-field-name {
+      left: 0;
+      translate: none;
+    }
+
+    &:last-child .enemy-field-name {
+      right: 0;
+      left: auto;
+      translate: none;
     }
 
     .enemy-field-cut {
@@ -91,6 +106,7 @@ $pulse: 267ms;
     }
 
     &.enemy-field-enemy-targeted {
+      z-index: 1;
       animation: gba-pulse-scale $pulse linear infinite;
 
       .enemy-field-name {
