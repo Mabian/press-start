@@ -24,7 +24,7 @@
   <nav class="root-letterbox root-letterbox-bottom" aria-label="Main menu">
     @if (flow.mode() === 'log') {
       <app-battle-log class="root-log" [lines]="flow.logLines()" (finished)="openTarget()" />
-    } @else {
+    } @else if (flow.mode() !== 'window') {
       <app-battle-menu
         class="root-menu"
         [items]="menuItems"
