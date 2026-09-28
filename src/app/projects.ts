@@ -15,7 +15,7 @@ export const PROJECTS: readonly Project[] = [
     name: 'Mindsync',
     tagline: 'Co-op party game',
     description:
-      'Everyone answers the same open question each round. Agree with all the others and the round is a full match. Rooms run live over a WebSocket.',
+      'Everyone answers the same open question each round. Match with others to earn points. Rooms run live over a WebSocket.',
     tech: ['Vue 3', 'Spring Boot', 'WebSocket'],
     url: 'https://mindsync.fun',
     sprite: 'enemies/brain.svg',
@@ -48,7 +48,7 @@ export const PROJECTS: readonly Project[] = [
     name: 'Shelf Esteem',
     tagline: 'Goodreads bookshelf',
     description:
-      'Puts every book from your Goodreads "read" shelf on a drawn bookcase, grouped by year. Each spine takes its color from the cover.',
+      'Puts every book from your Goodreads "read" shelf on a drawn bookcase, grouped by year. A Cloudflare Worker fetches the shelf, since Goodreads has no public API.',
     tech: ['Angular', 'Cloudflare Workers', 'GitHub Pages'],
     url: 'https://mabian.github.io/shelf-esteem/',
     sprite: 'enemies/book.svg',
